@@ -179,7 +179,7 @@ public class ConexionBD {
             result1 = st.executeQuery();
             while (result1.next()) {
                 Prestamos nuevoPrestamo = new Prestamos(result1.getInt("codPrestamo"), codUsuario, result1.getString("titulo"), result1.getString("fechaInicio"), result1.getString("fechaFin"),
-                         result1.getInt("aumento"), result1.getBoolean("devuelto"));
+                        result1.getInt("aumento"), result1.getBoolean("devuelto"));
                 prestamosUsuario.add(nuevoPrestamo);
             }
         } catch (NullPointerException e) {
@@ -189,7 +189,7 @@ public class ConexionBD {
         }
         return prestamosUsuario;
     }
-    
+
     public static ArrayList<Prestamos> mostrarPrestamos() {
         ArrayList<Prestamos> prestamosUsuario = new ArrayList();
         ResultSet result1 = null;
@@ -199,7 +199,7 @@ public class ConexionBD {
             result1 = st.executeQuery();
             while (result1.next()) {
                 Prestamos nuevoPrestamo = new Prestamos(result1.getInt("codPrestamo"), result1.getInt("codUsuario"), result1.getString("titulo"), result1.getString("fechaInicio"), result1.getString("fechaFin"),
-                         result1.getInt("aumento"),result1.getBoolean("devuelto"));
+                        result1.getInt("aumento"), result1.getBoolean("devuelto"));
                 prestamosUsuario.add(nuevoPrestamo);
             }
         } catch (NullPointerException e) {
@@ -209,15 +209,15 @@ public class ConexionBD {
         }
         return prestamosUsuario;
     }
-    
-    public static String nombresUsuarios(int codUsuario){
-        String usuario="";
+
+    public static String nombresUsuarios(int codUsuario) {
+        String usuario = "";
         ResultSet result1 = null;
         try {
-            PreparedStatement st = connect.prepareStatement("select nombre,apellidos from usuarios where codUsuario="+codUsuario);
+            PreparedStatement st = connect.prepareStatement("select nombre,apellidos from usuarios where codUsuario=" + codUsuario);
             result1 = st.executeQuery();
             if (result1.next()) {
-                usuario = result1.getString("nombre")+" "+result1.getString("apellidos");
+                usuario = result1.getString("nombre") + " " + result1.getString("apellidos");
             }
         } catch (NullPointerException e) {
             Biblioteca.mostrarMensaje("No se han encontrado coincidencias.");
@@ -370,15 +370,14 @@ public class ConexionBD {
             st.setString(8, usuario.getPassword());
             st.setBoolean(9, usuario.isAdministrador());
             st.execute();
-            correcto=true;
-        } 
-        catch (SQLException ex) {
-            if (ex.getErrorCode()==19){
+            correcto = true;
+        } catch (SQLException ex) {
+            if (ex.getErrorCode() == 19) {
                 Biblioteca.mostrarMensaje("El dni/login introducido ya exite en la base de datos");
-                correcto=false;
+                correcto = false;
             } else {
                 System.err.println(ex.getMessage());
-                correcto=false;
+                correcto = false;
             }
         }
         return correcto;
@@ -531,7 +530,7 @@ public class ConexionBD {
             st2.execute();
             for (int i = 0; i < numEjemplares; i++) {
                 int codEjemplar = calcularCodigos("ejemplares");
-                 PreparedStatement st5 = connect.prepareStatement("insert into ejemplares (codEjemplar,codLibro,editorial, isbn,añoPublicacion,comentarios,prestado) values (?,?,?,?,?,?,?)");
+                PreparedStatement st5 = connect.prepareStatement("insert into ejemplares (codEjemplar,codLibro,editorial, isbn,añoPublicacion,comentarios,prestado) values (?,?,?,?,?,?,?)");
                 st5.setInt(1, codEjemplar);
                 st5.setInt(2, codLibro);
                 st5.setString(3, editorial);
@@ -541,38 +540,47 @@ public class ConexionBD {
                 st5.setBoolean(7, false);
                 st5.execute();
             }
-            
-             
-             
-            
+
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
 
     }
-    //   public static void prestamoQuique(String dni) {
-//
-//        try {
-//            Statement st = connect.createStatement();
-//            ResultSet rs = st.executeQuery("select codUsuario from usuarios where dni = '" + dni + "';");
-//            
-//            int codUsr = Integer.parseInt(rs.getString(1));
-//            
-//            rs.close();
-//            rs = st.executeQuery("select codEjemplar from prestamos where codUsuario = "+codUsr+" and devuelto = 0;");
-//            
-//            ArrayList<Integer> codEjemplar = new ArrayList<Integer>(); 
-//            while(rs.next()){
-//            codEjemplar.add(Integer.parseInt(rs.getString(1)));
-//            }
-//            rs.close();
-//            for (int i = 0; i < codEjemplar.size(); i++) {
-//                rs = st.executeQuery("select ")
-//            }
-//            
-//        } catch (SQLException ex) {
-//            System.out.println("Que pasa hulio " + ex);
-//        }
-//
-    //   }
+
+    public static void borrarLibro(String titulo) {
+        
+        ResultSet result = null;
+        try {
+            PreparedStatement st = connect.prepareStatement("select codLibro FROM libros WHERE titulo='"+titulo+"'");
+            result = st.executeQuery();
+            
+            PreparedStatement st2 = connect.prepareStatement("DELETE FROM libros WHERE titulo=?");
+            st2.setString(1, titulo);
+            st2.execute();
+            
+             PreparedStatement st3 = connect.prepareStatement("DELETE FROM ejemplares WHERE codLibro=?");
+            st3.setInt(1, result.getInt(1));
+            st3.execute();
+            
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+        public static ArrayList<String> devolverTitulos() {
+        ArrayList<String> tit = new ArrayList();
+        ResultSet result = null;
+        try {
+            PreparedStatement st = connect.prepareStatement("select titulo from libros");
+            result = st.executeQuery();
+            while (result.next()) {
+                String titulo = result.getString("titulo");
+                tit.add(titulo);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return tit;
+    }
 }

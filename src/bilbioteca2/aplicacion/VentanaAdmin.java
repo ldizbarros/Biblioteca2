@@ -452,7 +452,8 @@ public class VentanaAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jAñadirLibroActionPerformed
 
     private void jBorrarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBorrarLibroActionPerformed
-        
+        BorrarLibro libro = new BorrarLibro();
+        libro.setVisible(true);
     }//GEN-LAST:event_jBorrarLibroActionPerformed
 
     private void jPrestamosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPrestamosActionPerformed

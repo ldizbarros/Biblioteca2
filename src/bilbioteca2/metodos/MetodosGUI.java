@@ -274,6 +274,9 @@ public class MetodosGUI {
     public static void añadirL(String titulo,String autor,String seccion, String argumento, int numEjemplares,String editorial, String isbn, String año){
         
         ConexionBD.añadirLibro(titulo,autor,seccion,argumento,numEjemplares,editorial,isbn,año);
-    }   
+    }  
+    public static void borrarL(String titulo){
+       ConexionBD.borrarLibro(titulo);
+   }
    
 }
