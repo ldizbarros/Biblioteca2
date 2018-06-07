@@ -8,6 +8,7 @@ package bilbioteca2.aplicacion;
 import bilbioteca2.datos.ConexionBD;
 import bilbioteca2.metodos.MetodosGUI;
 import java.util.ArrayList;
+import libreria.Biblioteca;
 
 /**
  *
@@ -164,10 +165,8 @@ public class BorrarLibro extends javax.swing.JFrame {
 //        int codEjemplar = Integer.parseInt(codigo[0]);
         String titulo = (String) jTitulos.getSelectedItem();
         MetodosGUI.borrarL(titulo);
-
-        VentanaAdmin adm = new VentanaAdmin();
+        Biblioteca.mostrarMensaje("Libro eliminado con exito");
         this.setVisible(false);
-        adm.setVisible(true);
     }//GEN-LAST:event_jOkActionPerformed
 
     /**
