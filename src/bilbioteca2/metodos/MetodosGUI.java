@@ -271,18 +271,22 @@ public class MetodosGUI {
        ConexionBD.añadirPrestamo(codUsuario,codEjemplar,diaPrestamo,diaDevolucion);
         
     }
+    
     public static void añadirL(String titulo,String autor,String seccion, String argumento, int numEjemplares,String editorial, String isbn, String año){
         
         ConexionBD.añadirLibro(titulo,autor,seccion,argumento,numEjemplares,editorial,isbn,año);
     }  
+    
     public static void borrarL(String titulo){
        ConexionBD.borrarLibro(titulo);
    }
-//    public static void devolverP(String dni){
-//        ConexionBD.devolverPrestamo(dni);
-//    }
+    
     public static int cargarP(String dni){
      int codUsuario = ConexionBD.recogerCodUsuario(dni);
         return codUsuario;
+    }
+    
+    public static void devolverP(int codPrestamo){
+        ConexionBD.devolverPrestamo(codPrestamo);
     }
 }

@@ -186,7 +186,11 @@ public class DevolverPrestamo extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel_CerrarMouseClicked
 
     private void jOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOkActionPerformed
-        String codEjemplar =  (String) jTable_Prestamos.getValueAt(jTable_Prestamos.getSelectedRow(), 0);
+        String codPrestamo =  (String) jTable_Prestamos.getValueAt(jTable_Prestamos.getSelectedRow(), 0);
+        MetodosGUI.devolverP(Integer.parseInt(codPrestamo));
+        VentanaAdmin adm = new VentanaAdmin();
+        this.setVisible(false);
+        adm.setVisible(true);
     }//GEN-LAST:event_jOkActionPerformed
 
     private void jBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBuscarMouseClicked

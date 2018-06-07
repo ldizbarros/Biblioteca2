@@ -482,15 +482,21 @@ public class ConexionBD {
         return listadni;
     }
 
-//    public static void devolverPrestamo(String dni) {
-//        try {           
-//            PreparedStatement st2 = connect.prepareStatement("UPDATE prestamos SET prestado=" + 0 + " where codEjemplar=" + codEjemplar);
-//            st2.execute();
-//           
-//        } catch (SQLException e) {
-//            System.out.println(e.getMessage());
-//        }
-//    }
+    public static void devolverPrestamo(int codPrestamo) {
+        ResultSet result = null;
+        try {
+            PreparedStatement st = connect.prepareStatement("UPDATE prestamos SET devuelto=" + 1 + " where codPrestamo=" + codPrestamo);
+            st.execute();
+            PreparedStatement st2 = connect.prepareStatement("select codEjemplar from prestamos where codPrestamo=" + codPrestamo);
+            result = st2.executeQuery();
+            int codEjemplar = result.getInt(1);
+            PreparedStatement st3 = connect.prepareStatement("UPDATE ejemplares SET prestado=0 where codEjemplar=" + codEjemplar);
+            st3.execute();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
     public static void añadirLibro(String titulo, String autor, String seccion, String argumento, int numEjemplares, String editorial, String isbn, String año) {
 
