@@ -23,7 +23,7 @@ public class AñadirPrestamo extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(this);
         
-         ArrayList <String> titulos = ConexionBD.visualizarLibros();
+        ArrayList <String> titulos = ConexionBD.visualizarLibros();
         for(int i = 0;i<titulos.size();i++){
             jTitulos.addItem(titulos.get(i));
         }

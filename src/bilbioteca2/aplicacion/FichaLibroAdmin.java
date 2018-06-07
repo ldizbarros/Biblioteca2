@@ -286,7 +286,8 @@ public class FichaLibroAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jB_comentariosActionPerformed
 
     private void jB_prestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_prestamoActionPerformed
-        // TODO add your handling code here:
+        AñadirPrestamo nuevoPrestamo = new AñadirPrestamo();
+        nuevoPrestamo.setVisible(true);
     }//GEN-LAST:event_jB_prestamoActionPerformed
 
     private void jB_borrarEjemplarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_borrarEjemplarActionPerformed
