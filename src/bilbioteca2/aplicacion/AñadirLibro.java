@@ -267,15 +267,13 @@ public class AñadirLibro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOkActionPerformed
-        
-        
+
         boolean correcto =MetodosGUI.añadirL(jTitulo.getText(),jAutor.getText(),jSeccion.getText(),jArgumento.getText(),
                 jEjemplares.getText(),jEditorial.getText(),jIsbn.getText(),jAño.getText());
         if(correcto){
             Biblioteca.mostrarMensaje("Libro añadido con exito");
             this.setVisible(false);
         }
-       
     }//GEN-LAST:event_jOkActionPerformed
 
     private void jLabel_CerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CerrarMouseClicked

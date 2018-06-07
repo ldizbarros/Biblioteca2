@@ -8,6 +8,7 @@ package bilbioteca2.aplicacion;
 import bilbioteca2.datos.ConexionBD;
 import bilbioteca2.metodos.MetodosGUI;
 import java.util.ArrayList;
+import libreria.Biblioteca;
 
 /**
  *
@@ -155,9 +156,7 @@ public class BorrarLibro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel_CerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CerrarMouseClicked
-        VentanaAdmin adm = new VentanaAdmin();
         this.setVisible(false);
-        adm.setVisible(true);
     }//GEN-LAST:event_jLabel_CerrarMouseClicked
 
     private void jOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOkActionPerformed
@@ -166,10 +165,8 @@ public class BorrarLibro extends javax.swing.JFrame {
 //        int codEjemplar = Integer.parseInt(codigo[0]);
         String titulo = (String) jTitulos.getSelectedItem();
         MetodosGUI.borrarL(titulo);
-
-        VentanaAdmin adm = new VentanaAdmin();
+        Biblioteca.mostrarMensaje("Libro eliminado con exito");
         this.setVisible(false);
-        adm.setVisible(true);
     }//GEN-LAST:event_jOkActionPerformed
 
     /**
