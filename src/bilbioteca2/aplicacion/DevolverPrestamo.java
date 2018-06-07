@@ -6,6 +6,7 @@
 package bilbioteca2.aplicacion;
 
 import static bilbioteca2.aplicacion.VentanaUsuario.jLabel_codUsuario;
+import bilbioteca2.datos.Prestamos;
 import bilbioteca2.metodos.MetodosGUI;
 import java.util.ArrayList;
 import javax.swing.table.TableColumn;
@@ -37,9 +38,10 @@ public class DevolverPrestamo extends javax.swing.JFrame {
         jLabel_Titulo = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jDiaPrestamo = new javax.swing.JTextField();
+        jDni = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable_Prestamos = new javax.swing.JTable();
+        jBuscar = new javax.swing.JLabel();
         jLabel_Cerrar = new javax.swing.JLabel();
         jOk = new javax.swing.JButton();
 
@@ -60,7 +62,7 @@ public class DevolverPrestamo extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("DNI usuario:");
 
-        jDiaPrestamo.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jDni.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
 
         jTable_Prestamos.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         jTable_Prestamos.setModel(new javax.swing.table.DefaultTableModel(
@@ -75,6 +77,13 @@ public class DevolverPrestamo extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable_Prestamos);
 
+        jBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bilbioteca2/aplicacion/iconos/search.png"))); // NOI18N
+        jBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jBuscarMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -82,23 +91,26 @@ public class DevolverPrestamo extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 624, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addComponent(jLabel1)
                         .addGap(38, 38, 38)
-                        .addComponent(jDiaPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 624, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(44, Short.MAX_VALUE))
+                        .addComponent(jDni, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
+                        .addComponent(jBuscar)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(28, 28, 28)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jDiaPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                    .addComponent(jDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(jBuscar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
         );
@@ -124,27 +136,27 @@ public class DevolverPrestamo extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jLabel_Titulo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(163, Short.MAX_VALUE)
+                .addComponent(jOk, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(170, 170, 170)
+                .addComponent(jLabel_Cerrar)
+                .addGap(31, 31, 31))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jOk, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(189, 189, 189)
-                        .addComponent(jLabel_Cerrar))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(155, 155, 155)
+                .addComponent(jLabel_Titulo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jLabel_Titulo)
                 .addGap(25, 25, 25)
+                .addComponent(jLabel_Titulo)
+                .addGap(33, 33, 33)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,14 +186,19 @@ public class DevolverPrestamo extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel_CerrarMouseClicked
 
     private void jOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOkActionPerformed
-        ArrayList prestamos = MetodosGUI.verPrestamos(Integer.parseInt(jLabel_codUsuario.getText()));
+        String codEjemplar =  (String) jTable_Prestamos.getValueAt(jTable_Prestamos.getSelectedRow(), 0);
+    }//GEN-LAST:event_jOkActionPerformed
+
+    private void jBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBuscarMouseClicked
+         int codUsuario = MetodosGUI.cargarP(jDni.getText());
+        ArrayList prestamos = MetodosGUI.verPrestamos(codUsuario);
         jTable_Prestamos.setModel(MetodosGUI.mostrarPrestamos(prestamos));
         TableColumn columna =  jTable_Prestamos.getColumnModel().getColumn(0);
         columna.setMaxWidth(0);
         columna.setMinWidth(0);
         columna.setPreferredWidth(0);
-        jTable_Prestamos.doLayout(); 
-    }//GEN-LAST:event_jOkActionPerformed
+        jTable_Prestamos.doLayout();   ;
+    }//GEN-LAST:event_jBuscarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -219,7 +236,8 @@ public class DevolverPrestamo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField jDiaPrestamo;
+    private javax.swing.JLabel jBuscar;
+    private javax.swing.JTextField jDni;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel_Cerrar;
     private javax.swing.JLabel jLabel_Titulo;

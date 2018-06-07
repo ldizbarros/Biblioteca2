@@ -24,7 +24,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -45,16 +45,16 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
                   <Component id="jAñadirUsuario" min="-2" pref="123" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   <Component id="JEliminarUsuario" min="-2" pref="123" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jNuevoPrestamo" min="-2" pref="123" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jDevolverPrestamo" min="-2" pref="123" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jPrestamos" min="-2" pref="123" max="-2" attributes="0"/>
+                  <Component id="jPrestamos" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="jLabel_Cerrar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -72,7 +72,7 @@
                   <Component id="jRB_Publicacion" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                   <Component id="jRB_Seccion" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="200" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <Group type="103" groupAlignment="1" attributes="0">
@@ -81,7 +81,7 @@
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jScrollPane1" min="-2" pref="776" max="-2" attributes="0"/>
-                                  <EmptySpace pref="26" max="32767" attributes="0"/>
+                                  <EmptySpace pref="69" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jB_verLibro" alignment="1" min="-2" pref="111" max="-2" attributes="0"/>
                                       <Component id="jBorrarLibro" alignment="1" min="-2" pref="111" max="-2" attributes="0"/>

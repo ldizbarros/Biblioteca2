@@ -482,16 +482,15 @@ public class ConexionBD {
         return listadni;
     }
 
-    public static void devolverPrestamo(int codEjemplar, String dni) {
-        try {
-            PreparedStatement st = connect.prepareStatement("UPDATE prestamos SET prestado=" + 0 + " where codEjemplar=" + codEjemplar);
-            st.execute();
-            PreparedStatement st2 = connect.prepareStatement("select codUsuario from usuarios where dni='" + dni + "'");
-            st.execute();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
+//    public static void devolverPrestamo(String dni) {
+//        try {           
+//            PreparedStatement st2 = connect.prepareStatement("UPDATE prestamos SET prestado=" + 0 + " where codEjemplar=" + codEjemplar);
+//            st2.execute();
+//           
+//        } catch (SQLException e) {
+//            System.out.println(e.getMessage());
+//        }
+//    }
 
     public static void añadirLibro(String titulo, String autor, String seccion, String argumento, int numEjemplares, String editorial, String isbn, String año) {
 
@@ -548,27 +547,27 @@ public class ConexionBD {
     }
 
     public static void borrarLibro(String titulo) {
-        
+
         ResultSet result = null;
         try {
-            PreparedStatement st = connect.prepareStatement("select codLibro FROM libros WHERE titulo='"+titulo+"'");
+            PreparedStatement st = connect.prepareStatement("select codLibro FROM libros WHERE titulo='" + titulo + "'");
             result = st.executeQuery();
-            
+
             PreparedStatement st2 = connect.prepareStatement("DELETE FROM libros WHERE titulo=?");
             st2.setString(1, titulo);
             st2.execute();
-            
-             PreparedStatement st3 = connect.prepareStatement("DELETE FROM ejemplares WHERE codLibro=?");
+
+            PreparedStatement st3 = connect.prepareStatement("DELETE FROM ejemplares WHERE codLibro=?");
             st3.setInt(1, result.getInt(1));
             st3.execute();
-            
-            
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
 
     }
-        public static ArrayList<String> devolverTitulos() {
+
+    public static ArrayList<String> devolverTitulos() {
         ArrayList<String> tit = new ArrayList();
         ResultSet result = null;
         try {

@@ -278,5 +278,11 @@ public class MetodosGUI {
     public static void borrarL(String titulo){
        ConexionBD.borrarLibro(titulo);
    }
-   
+//    public static void devolverP(String dni){
+//        ConexionBD.devolverPrestamo(dni);
+//    }
+    public static int cargarP(String dni){
+     int codUsuario = ConexionBD.recogerCodUsuario(dni);
+        return codUsuario;
+    }
 }
