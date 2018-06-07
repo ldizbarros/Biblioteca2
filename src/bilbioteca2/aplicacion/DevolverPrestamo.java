@@ -180,9 +180,7 @@ public class DevolverPrestamo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel_CerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CerrarMouseClicked
-        VentanaAdmin adm = new VentanaAdmin();
         this.setVisible(false);
-        adm.setVisible(true);
     }//GEN-LAST:event_jLabel_CerrarMouseClicked
 
     private void jOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOkActionPerformed

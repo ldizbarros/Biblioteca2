@@ -275,9 +275,7 @@ public class AñadirLibro extends javax.swing.JFrame {
     }//GEN-LAST:event_jOkActionPerformed
 
     private void jLabel_CerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CerrarMouseClicked
-        VentanaAdmin adm = new VentanaAdmin();
         this.setVisible(false);
-        adm.setVisible(true);
     }//GEN-LAST:event_jLabel_CerrarMouseClicked
 
     /**
