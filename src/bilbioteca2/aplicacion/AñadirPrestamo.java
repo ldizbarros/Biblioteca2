@@ -9,6 +9,7 @@ import bilbioteca2.datos.ConexionBD;
 import bilbioteca2.datos.Prestamos;
 import bilbioteca2.metodos.MetodosGUI;
 import java.util.ArrayList;
+import libreria.Biblioteca;
 
 /**
  *
@@ -222,10 +223,8 @@ public class AñadirPrestamo extends javax.swing.JFrame {
         String dni = (String) jDnis.getSelectedItem();
         MetodosGUI.añadirP(codEjemplar,dni,jDiaPrestamo.getText(),jDiaDevolucion.getText());
         
-        VentanaAdmin adm = new VentanaAdmin();
+        Biblioteca.mostrarMensaje("Prestamo añadido con exito");
         this.setVisible(false);
-        adm.setVisible(true);
-
     }//GEN-LAST:event_jOkActionPerformed
 
     private void jLabel_CerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CerrarMouseClicked
