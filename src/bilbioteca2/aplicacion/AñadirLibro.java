@@ -266,8 +266,10 @@ public class AñadirLibro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOkActionPerformed
+        
+        
         MetodosGUI.añadirL(jTitulo.getText(),jAutor.getText(),jSeccion.getText(),jArgumento.getText(),
-                Integer.parseInt(jEjemplares.getText()),jEditorial.getText(),jIsbn.getText(),jAño.getText());
+                jEjemplares.getText(),jEditorial.getText(),jIsbn.getText(),jAño.getText());
         
         VentanaAdmin adm = new VentanaAdmin();
         this.setVisible(false);
