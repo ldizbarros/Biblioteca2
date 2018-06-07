@@ -10,6 +10,7 @@ import bilbioteca2.datos.Prestamos;
 import bilbioteca2.metodos.MetodosGUI;
 import java.util.ArrayList;
 import javax.swing.table.TableColumn;
+import libreria.Biblioteca;
 
 /**
  *
@@ -180,28 +181,41 @@ public class DevolverPrestamo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel_CerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CerrarMouseClicked
-        VentanaAdmin adm = new VentanaAdmin();
         this.setVisible(false);
-        adm.setVisible(true);
     }//GEN-LAST:event_jLabel_CerrarMouseClicked
 
     private void jOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOkActionPerformed
-        String codPrestamo =  (String) jTable_Prestamos.getValueAt(jTable_Prestamos.getSelectedRow(), 0);
-        MetodosGUI.devolverP(Integer.parseInt(codPrestamo));
-        VentanaAdmin adm = new VentanaAdmin();
-        this.setVisible(false);
-        adm.setVisible(true);
+        if(jDni.getText().equalsIgnoreCase("")){
+             Biblioteca.mostrarMensaje("Debes introducir un DNI");
+         }else{
+            try{
+                String codPrestamo =  (String) jTable_Prestamos.getValueAt(jTable_Prestamos.getSelectedRow(), 0);
+                MetodosGUI.devolverP(Integer.parseInt(codPrestamo));
+                Biblioteca.mostrarMensaje("Prestamo devuelto con exito");
+                this.setVisible(false);
+            }catch(Exception ex){
+                Biblioteca.mostrarMensaje("Se ha producido un error al devolver el prestamo");
+            }
+        }
     }//GEN-LAST:event_jOkActionPerformed
 
     private void jBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBuscarMouseClicked
-         int codUsuario = MetodosGUI.cargarP(jDni.getText());
-        ArrayList prestamos = MetodosGUI.verPrestamos(codUsuario);
-        jTable_Prestamos.setModel(MetodosGUI.mostrarPrestamos(prestamos));
-        TableColumn columna =  jTable_Prestamos.getColumnModel().getColumn(0);
-        columna.setMaxWidth(0);
-        columna.setMinWidth(0);
-        columna.setPreferredWidth(0);
-        jTable_Prestamos.doLayout();   ;
+        if (jDni.getText().equalsIgnoreCase("")){
+            Biblioteca.mostrarMensaje("No ha introducido ningun dni");
+        }else{
+            int codUsuario = MetodosGUI.cargarP(jDni.getText());
+            try{
+                ArrayList prestamos = MetodosGUI.verPrestamos(codUsuario);
+                jTable_Prestamos.setModel(MetodosGUI.mostrarPrestamos(prestamos));
+                TableColumn columna =  jTable_Prestamos.getColumnModel().getColumn(0);
+                columna.setMaxWidth(0);
+                columna.setMinWidth(0);
+                columna.setPreferredWidth(0);
+                jTable_Prestamos.doLayout();      
+            }catch(IllegalArgumentException ex){
+                System.out.println("El usuario no tiene prestamos sin devolver");
+            }
+        }
     }//GEN-LAST:event_jBuscarMouseClicked
 
     /**

@@ -324,7 +324,7 @@ public class ConexionBD {
             PreparedStatement st = connect.prepareStatement("UPDATE ejemplares SET comentarios='" + comentarios + "'  where codEjemplar=" + codEjemplar);
             st.executeUpdate();
         } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
+            System.err.println(ex.getMessage());;
         }
     }
 
@@ -377,6 +377,7 @@ public class ConexionBD {
                 correcto = false;
             } else {
                 System.err.println(ex.getMessage());
+                Biblioteca.mostrarMensaje("Se ha producido un error en la conexion.\nIntentelo mas tarde.");
                 correcto = false;
             }
         }
@@ -390,6 +391,7 @@ public class ConexionBD {
             st.execute();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            Biblioteca.mostrarMensaje("Se ha producido un error en la conexion.\nIntentelo mas tarde.");
         }
     }
 
@@ -405,6 +407,7 @@ public class ConexionBD {
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+            Biblioteca.mostrarMensaje("Se ha producido un error en la conexion.\nIntentelo mas tarde.");
         }
         return dnis;
     }
@@ -428,6 +431,7 @@ public class ConexionBD {
             st2.executeUpdate();
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
+            Biblioteca.mostrarMensaje("Se ha producido un error en la conexion.\nIntentelo mas tarde.");
         }
     }
 
@@ -441,6 +445,7 @@ public class ConexionBD {
 
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
+            Biblioteca.mostrarMensaje("El dni introducido no exite.");
         }
         return codUsuario;
     }
@@ -460,6 +465,7 @@ public class ConexionBD {
             }
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
+            Biblioteca.mostrarMensaje("Se ha producido un error en la conexion.\nIntentelo mas tarde.");
         }
         return titulos;
 
@@ -478,6 +484,7 @@ public class ConexionBD {
             }
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
+            Biblioteca.mostrarMensaje("Se ha producido un error en la conexion.\nIntentelo mas tarde.");
         }
         return listadni;
     }
@@ -495,14 +502,16 @@ public class ConexionBD {
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            Biblioteca.mostrarMensaje("Se ha producido un error en la conexion.\nIntentelo mas tarde.");
         }
     }
 
-    public static void añadirLibro(String titulo, String autor, String seccion, String argumento, int numEjemplares, String editorial, String isbn, String año) {
-
+    public static boolean añadirLibro(String titulo, String autor, String seccion, String argumento, String numEjemplares, String editorial, String isbn, String año) {
+        boolean correcto;
         int codLibro = calcularCodigos("libros");
         boolean existe = false;
         ResultSet result = null;
+        
         try {
             PreparedStatement st = connect.prepareStatement("select autor from autores");
             result = st.executeQuery();
@@ -531,9 +540,9 @@ public class ConexionBD {
             }
             st2.setString(4, seccion);
             st2.setString(5, argumento);
-            st2.setInt(6, numEjemplares);
+            st2.setInt(6, Integer.parseInt(numEjemplares));
             st2.execute();
-            for (int i = 0; i < numEjemplares; i++) {
+            for (int i = 0; i < Integer.parseInt(numEjemplares); i++) {
                 int codEjemplar = calcularCodigos("ejemplares");
                 PreparedStatement st5 = connect.prepareStatement("insert into ejemplares (codEjemplar,codLibro,editorial, isbn,añoPublicacion,comentarios,prestado) values (?,?,?,?,?,?,?)");
                 st5.setInt(1, codEjemplar);
@@ -545,11 +554,13 @@ public class ConexionBD {
                 st5.setBoolean(7, false);
                 st5.execute();
             }
-
+            correcto=true;
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
+            Biblioteca.mostrarMensaje("Se ha producido un error en la conexion.\nIntentelo mas tarde.");
+            correcto=false;
         }
-
+        return correcto;
     }
 
     public static void borrarLibro(String titulo) {
@@ -569,6 +580,7 @@ public class ConexionBD {
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            Biblioteca.mostrarMensaje("Se ha producido un error en la conexion.\nIntentelo mas tarde.");
         }
 
     }
@@ -585,6 +597,7 @@ public class ConexionBD {
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+            Biblioteca.mostrarMensaje("Se ha producido un error en la conexion.\nIntentelo mas tarde.");
         }
         return tit;
     }

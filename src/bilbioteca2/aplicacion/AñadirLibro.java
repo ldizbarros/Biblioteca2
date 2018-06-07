@@ -7,6 +7,7 @@ package bilbioteca2.aplicacion;
 
 import bilbioteca2.datos.Ejemplares;
 import bilbioteca2.metodos.MetodosGUI;
+import libreria.Biblioteca;
 
 /**
  *
@@ -268,18 +269,17 @@ public class AñadirLibro extends javax.swing.JFrame {
     private void jOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOkActionPerformed
         
         
-        MetodosGUI.añadirL(jTitulo.getText(),jAutor.getText(),jSeccion.getText(),jArgumento.getText(),
+        boolean correcto =MetodosGUI.añadirL(jTitulo.getText(),jAutor.getText(),jSeccion.getText(),jArgumento.getText(),
                 jEjemplares.getText(),jEditorial.getText(),jIsbn.getText(),jAño.getText());
-        
-        VentanaAdmin adm = new VentanaAdmin();
-        this.setVisible(false);
-        adm.setVisible(true);
+        if(correcto){
+            Biblioteca.mostrarMensaje("Libro añadido con exito");
+            this.setVisible(false);
+        }
+       
     }//GEN-LAST:event_jOkActionPerformed
 
     private void jLabel_CerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CerrarMouseClicked
-        VentanaAdmin adm = new VentanaAdmin();
         this.setVisible(false);
-        adm.setVisible(true);
     }//GEN-LAST:event_jLabel_CerrarMouseClicked
 
     /**

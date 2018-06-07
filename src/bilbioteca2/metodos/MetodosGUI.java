@@ -272,9 +272,15 @@ public class MetodosGUI {
         
     }
     
-    public static void añadirL(String titulo,String autor,String seccion, String argumento, int numEjemplares,String editorial, String isbn, String año){
-        
-        ConexionBD.añadirLibro(titulo,autor,seccion,argumento,numEjemplares,editorial,isbn,año);
+    public static boolean añadirL(String titulo,String autor,String seccion, String argumento, String numEjemplares,String editorial, String isbn, String año){
+        boolean correcto;
+        if(titulo.equalsIgnoreCase("") || autor.equalsIgnoreCase("") || seccion.equalsIgnoreCase("") || argumento.equalsIgnoreCase("") || numEjemplares.equalsIgnoreCase("")  || editorial.equalsIgnoreCase("") || isbn.equalsIgnoreCase("")|| año.equalsIgnoreCase("")){
+           Biblioteca.mostrarMensaje("No han completado todos los campos.\nInténtelo de nuevo"); 
+           correcto = false;
+        }else{
+            correcto = ConexionBD.añadirLibro(titulo,autor,seccion,argumento,numEjemplares,editorial,isbn,año);
+        }
+        return correcto;
     }  
     
     public static void borrarL(String titulo){
